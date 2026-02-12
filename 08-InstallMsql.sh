@@ -1,6 +1,6 @@
 #!/bin/bash
 USERID=$(id -u)
-if [ $? -ne 0 ]
+if [ $USERID -ne 0 ]
 then
     echo "sudo acess required to run this script"
     exit 1
