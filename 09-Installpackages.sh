@@ -8,7 +8,7 @@ N="\e[0m"
 Log_Directory="/var/log/shell-script-logs/"
 timestamp=$(date +%Y-%m-%d-%H-%M-%S)
 scriptname=$(echo $0 | cut -d "." -f1 )
-logfile="$Log_Directory-$scriptname-$timestamp.log"
+logfile="$Log_Directory/$scriptname-$timestamp.log"
 
 validate (){
     
