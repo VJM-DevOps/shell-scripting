@@ -12,21 +12,38 @@ then
     exit 1
 fi
 
-dnf list installed msql-server
+dnf list installed mysql
 if [ $? -eq 0 ]
 then
-    echo -e " Mysql already $Y installed $N "
+    echo -e "mysql is already $Y installed $N"
     exit 1
 else
-    dnf install mysql-server -y
+    dnf install mysql -y
     if [ $? -ne 0 ]
     then
-        echo -e " Mysql installation.....$R Failuer $N "
+        echo -e "mysql installation... $R Failure $N"
         exit 1
     else
-        echo -e " Mysql-server installation.....$G Success $N "
+        echo -e "mysql installation... $G Sucess $N"
     fi
 fi
+
+
+# dnf list installed msql-server
+# if [ $? -eq 0 ]
+# then
+#     echo -e " Mysql already $Y installed $N "
+#     exit 1
+# else
+#     dnf install mysql-server -y
+#     if [ $? -ne 0 ]
+#     then
+#         echo -e " Mysql installation.....$R Failuer $N "
+#         exit 1
+#     else
+#         echo -e " Mysql-server installation.....$G Success $N "
+#     fi
+# fi
 
 dnf list installed nginx
 if [ $? -eq 0 ]
