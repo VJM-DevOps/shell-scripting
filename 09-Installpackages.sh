@@ -39,7 +39,10 @@ else
 fi
 
 dnf list installed nginx
-validate $? "nginx installation"
+if [ $? -ne 0 ]
+then
+    dnf install nginx
+    validate $? "nginx installation"
 else
     echo -e "nginx is already $Y installed $N"
 fi
