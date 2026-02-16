@@ -24,23 +24,23 @@ else
         echo -e " Mysql installation.....$R Failuer $N "
         exit 1
     else
-        echo " Mysql installation..... $G Success $N "
+        echo -e " Mysql installation..... $G Success $N "
     fi
 fi
 
 dnf list installed nginx
 if [ $? -eq 0 ]
 then
-    echo " nginx already $Y installed $N "
+    echo -e " nginx already $Y installed $N "
     exit 1
 else
     dnf install nginx
     if [ $? -ne 0 ]
     then
-        echo " nginx installation.....$R Failuer $N "
+        echo -e " nginx installation.....$R Failuer $N "
         exit 1
     else
-        echo " nginx installation.....$G Success $N "
+        echo -e " nginx installation.....$G Success $N "
     fi
 fi
 
