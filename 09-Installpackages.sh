@@ -29,19 +29,21 @@ then
     exit 1
 fi
 
-dnf list installed mysql
+echo " Script execution starts:: $timestamp" &>>$logfile
+
+dnf list installed mysql &>>$logfile
 if [ $? -ne 0 ]
 then
-    dnf install mysql -y
+    dnf install mysql -y &>>$logfile
     validate $? "Installing mysql"
 else
     echo -e "mysql is already $Y installed $N"
 fi
 
-dnf list installed nginx
+dnf list installed nginx &>>$logfile
 if [ $? -ne 0 ]
 then
-    dnf install nginx
+    dnf install nginx &>>$logfile
     validate $? "nginx installation"
 else
     echo -e "nginx is already $Y installed $N"
