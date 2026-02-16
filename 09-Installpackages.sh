@@ -5,10 +5,10 @@ Y="\e[33m"
 G="\e[32m"
 N="\e[0m"
 
-Log_Directory="/var/log/shell-script-logs"
+Log_Directory="/var/log/shell-script-logs/"
 timestamp=$(date +%Y-%m-%d-%H-%M-%S)
 scriptname=$(echo $0 | cut -d "." -f1 )
-logfile="$Log_Directory-$scriptname-$timestamp.log"
+logfile="$Log_Directory-scriptname-$timestamp.log"
 
 validate (){
     
@@ -43,7 +43,7 @@ fi
 dnf list installed nginx &>>$logfile
 if [ $? -ne 0 ]
 then
-    dnf install nginx &>>$logfile
+    dnf install nginx -y &>>$logfile
     validate $? "nginx installation"
 else
     echo -e "nginx is already $Y installed $N"
