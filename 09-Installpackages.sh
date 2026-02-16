@@ -5,6 +5,23 @@ Y="\e[33m"
 G="\e[32m"
 N="\e[0m"
 
+Log_Directory="var/log/shell-script-logs"
+timestamp=$(date +%Y-%m-%d-%H-%M-%S)
+scriptname=$(echo $0 | cut -d "." -f1 )
+logfile="$Log_Directory-$scriptname-$timestamp.log"
+
+validate (){
+    
+    if [ $1 -ne 0 ]
+    then
+        echo -e "$2... $R Failure $N"
+        exit 1
+    else
+        echo -e "$2... $G Success $N"
+    fi
+
+}
+
 user=$(id -u)
 if [ $user -ne 0 ]
 then
@@ -16,28 +33,13 @@ dnf list installed mysql
 if [ $? -ne 0 ]
 then
     dnf install mysql -y
-    if [ $? -ne 0 ]
-    then
-        echo -e "mysql installation... $R Failure $N"
-        exit 1
-    else
-        echo -e "mysql installation... $G Success $N"
-    fi
+    validate $? "Installing mysql"
 else
     echo -e "mysql is already $Y installed $N"
 fi
 
 dnf list installed nginx
-if [ $? -ne 0 ]
-then
-    dnf install nginx -y
-    if [ $? -ne 0 ]
-    then
-        echo -e "nginx installation... $R Failure $N"
-        exit 1
-    else
-        echo -e "nginx installation... $G Success $N"
-    fi
+validate $? "nginx installation"
 else
     echo -e "nginx is already $Y installed $N"
 fi
