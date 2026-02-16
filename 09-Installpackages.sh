@@ -13,35 +13,33 @@ then
 fi
 
 dnf list installed mysql
-if [ $? -eq 0 ]
+if [ $? -ne 0 ]
 then
-    echo -e "mysql is already $Y installed $N"
-    exit 1
-else
     dnf install mysql -y
     if [ $? -ne 0 ]
     then
         echo -e "mysql installation... $R Failure $N"
         exit 1
     else
-        echo -e "mysql installation... $G Sucess $N"
+        echo -e "mysql installation... $G Success $N"
     fi
+else
+    echo -e "mysql is already $Y installed $N"
 fi
 
 dnf list installed nginx
-if [ $? -eq 0 ]
+if [ $? -ne 0 ]
 then
-    echo -e " nginx already $Y installed $N "
-    exit 1
-else
     dnf install nginx -y
     if [ $? -ne 0 ]
     then
-        echo -e " nginx installation.....$R Failuer $N "
+        echo -e "nginx installation... $R Failure $N"
         exit 1
     else
-        echo -e " nginx installation.....$G Success $N "
+        echo -e "nginx installation... $G Success $N"
     fi
+else
+    echo -e "nginx is already $Y installed $N"
 fi
 
 
